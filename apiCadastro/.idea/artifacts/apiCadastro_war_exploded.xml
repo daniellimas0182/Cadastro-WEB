@@ -1,0 +1,40 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="apiCadastro:war exploded">
+    <output-path>$PROJECT_DIR$/target/apiCadastro</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>apiCadastro</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="apiCadastro" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.2.2" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.4" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.4" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.4" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.4" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.4" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-annotations:3.5.6-Final" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:3.5.6-Final" />
+          <element id="library" level="project" name="Maven: antlr:antlr:2.7.6" />
+          <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.1" />
+          <element id="library" level="project" name="Maven: javax.transaction:jta:1.1" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-commons-annotations:3.2.0.Final" />
+          <element id="library" level="project" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.0.Final" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.5.8" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/apiCadastro/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="apiCadastro/web/Web" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="apicamisa:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>apicamisa</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="apicamisa.war">
+      <element id="artifact" artifact-name="apicamisa:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,201 @@
+<div>
+    <div style="margin-top: 10px; margin-bottom: 20px;">
+        <h3 style="text-align: center">{{tituloApp}}</h3>
+    </div>
+    <form class="form-inline">
+        <div class="form-row align-items-center">
+            <button ng-click="funcionario = {}" type="button" class="btn btn-info my-8 my-sm-2" data-toggle="modal"
+                data-target="#funcionarioModal">
+                Novo Funcionario
+            </button>
+        </div>
+    </form>
+    <!--------minha pesquisa-->
+    <input type="text" ng-model="criterioDeBusca" placeholder="O que você deseja buscar?" class="form-control">
+
+    <div class="alert-danger">{{mensagemDeErro}}</div>
+    <table class="table table-hover">
+
+        <tr>
+            
+            <!-- <th><a class="clicar" style="text-decoration: none" ng-click="ordenarPor('idProduto')">Cod.</a></th> -->
+
+            <th><a class="clicar" style="text-decoration: none" ng-click="ordenarPor('cpf')">CPF</a></th>
+
+            <th><a class="clicar" style="text-decoration: none" ng-click="ordenarPor('nome')">Nome</a></th>
+
+            <th><a class="clicar" style="text-decoration: none" ng-click="ordenarPor('rg')">RG</a></th>
+
+            <th><a class="clicar" style="text-decoration: none" ng-click="ordenarPor('telefone')">Telefone</a></th>
+
+            <th><a class="clicar" style="text-decoration: none" ng-click="ordenarPor('email')">E-mail</a></th>
+
+            <!-- <th><a class="clicar" style="text-decoration: none" ng-click="ordenarPor('endereco')">Endereço</a></th> -->
+
+            <th><a class="clicar" style="text-decoration: none" ng-click="ordenarPor('dataNascimento')">Data de
+                    nascimento</a></th>
+
+            <!-- <th><a class="clicar" style="text-decoration: none" ng-click="ordenarPor('dataCadastro')">Data de
+                    cadastro</a></th> -->
+
+            <th><a class="seta" style="text-decoration: none">Ações</a></th>
+        </tr>
+        <tr 
+            ng-repeat="funcionario in funcionarios | filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao">
+            
+            <!-- <td>{{funcionario.idFuncionario}}</td> -->
+            <td>{{funcionario.cpf}}</td>
+            <td>{{funcionario.nome}}</td>
+            <td>{{funcionario.rg}}</td>
+            <td>{{funcionario.telefone}}</td>
+            <td>{{funcionario.email}}</td>
+            <!-- <td>{{funcionario.endereco}}</td> -->
+            <td>{{funcionario.dataNascimento | date:'dd/MM/yyyy'}}</td>
+            <!-- <td>{{funcionario.dataCadastro | date:'dd/MM/yyyy'}}</td> -->
+            <td>
+
+
+                <a href="" ng-click="editarFuncionario(funcionario)"
+                   ><span style="padding: 3px;"
+                        title="Editar Funcionario" class="fa fa-pencil" data-toggle="modal"
+                        data-target="#funcionarioModal"></span></a>
+
+                <a href="" ng-click="removerFuncionario(funcionario)"><span style="padding: 3px;"
+                        title="Remover Funcionario" class="fa fa-trash"></span></a>
+            </td>
+        </tr>
+    </table>
+
+    <h5 style="text-align: center" ng-show="!funcionarios.length">Não existem funcionarios a serem demonstradas. Clique
+        em '
+        Funcionario' para adicionar!</h5>
+
+    <!----botao add funcionario -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="funcionarioModal" tabindex="-1" role="dialog" aria-labelledby="funcionarioModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="funcionarioModalLabel">{{!funcionario.idFuncionario ? 'Adicionando Funcionario' :
+                        'Editar
+                        Funcionario'}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form name="funcionarioForm" name="funcionarioForm">
+
+                        <input ng-model="funcionario.cpf" ng-maxlength="100" class="form-control" type="text" name="cpf"
+                            id="cpf" placeholder="CPF">
+
+                        <input ng-model="funcionario.nome" ng-maxlength="100" class="form-control" type="text"
+                            name="nome" id="nome" placeholder="Nome">
+
+                        <input ng-model="funcionario.rg" ng-maxlength="100" class="form-control" type="text" name="rg"
+                            id="rg" placeholder="RG">
+
+                        <input ng-model="funcionario.telefone" ng-maxlength="100" class="form-control" type="text"
+                            name="telefone" id="telefone" placeholder="Telefone">
+
+                        <input ng-model="funcionario.email" ng-maxlength="100" class="form-control" type="text"
+                            name="email" id="email" placeholder="E-mail">
+
+                        <input ng-model="funcionario.endereco" ng-maxlength="100" class="form-control" type="text"
+                            name="endereco" id="endereco" placeholder="Endereco">
+
+                        <input ng-model="funcionario.dataNascimento" ng-maxlength="100" class="form-control" type="date"
+                            name="dataNascimento" id="dataNascimento">
+
+                        <input ng-model="funcionario.dataCadastro" ng-maxlength="100" class="form-control" type="date"
+                            name="dataCadastro" id="dataCadastro">
+
+
+                        <hr>
+                        <h3>Dependentes</h3>
+                        <!--INI-->
+
+                        <br>
+                            <hr>
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-4">
+
+                                        <input type="text" class="form-control" ng-model="dependenteInserir.nome" id="nome"
+                                            placeholder="Nome">
+
+                                    </div>
+                                    <div class="col-sm-4">
+
+                                        <input type="text" class="form-control" ng-model="dependenteInserir.email" id="email"
+                                            placeholder="E-mail">
+
+                                    </div>
+                                    <div class="col-sm-4">
+
+                                        <input type="date" class="form-control" ng-model="dependenteInserir.dataNascimento" id="dataNascimento"
+                                            placeholder="">
+
+                                    </div>
+                                    
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group text-right">
+                                            <button ng-click="adicionarDependenteLista(dependenteInserir)" type="button" class="btn btn-success btn-sm"
+                                                style="margin-top:1%;">Adicionar</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        <table class="table table-hover">
+ 
+                            <tr>
+                                
+                                <th><a class="clicar" style="text-decoration: none" ng-click="ordenarPor('idNome')">Nome</a></th>
+                    
+                                <th><a class="clicar" style="text-decoration: none" ng-click="ordenarPor('email')">Email</a></th>
+                    
+                                <th><a class="clicar" style="text-decoration: none" ng-click="ordenarPor('dataNascimento')">Data Nascimento</a></th>
+                    
+                      <th><a class="seta" style="text-decoration: none">Ações</a></th>
+                            </tr>
+                            <tr 
+                                ng-repeat="dependente in funcionario.funcionarioDependente | filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao">
+                                
+                                <td>{{dependente.nome}}</td>
+                                <td>{{dependente.email}}</td>
+                                <td>{{dependente.dataNascimento | date:'dd/MM/yyyy'}}</td>
+                                <td>
+                    <a href="" ng-click="editaDependenteLista(dependente)"
+                                       ><span style="padding: 3px;"
+                                            title="Editar Funcionario" class="fa fa-pencil"></span></a>
+                    
+                                    <a href="" ng-click="excluirDependenteLista(dependente)"><span style="padding: 3px;"
+                                            title="Remover Funcionario" class="fa fa-trash"></span></a>
+                                </td>
+                            </tr>
+                        </table>
+                        <!--FIM-->
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" ng-click="salvarFuncionario(funcionario)"
+                        ng-disabled="funcionarioForm.$invalid" data-dismiss="modal">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

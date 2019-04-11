@@ -1,0 +1,24 @@
+com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.9.4:
+  - com.fasterxml.jackson.core:jackson-annotations:jar:2.9.0:compile
+  - com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.9.4:compile
+org.postgresql:postgresql:jar:42.2.2:
+  - org.postgresql:postgresql:jar:42.2.2:compile
+org.hibernate:hibernate-annotations:jar:3.5.6-Final:
+  - org.hibernate:hibernate-core:jar:3.5.6-Final:compile
+  - antlr:antlr:jar:2.7.6:compile
+  - commons-collections:commons-collections:jar:3.1:compile
+  - org.hibernate:hibernate-commons-annotations:jar:3.2.0.Final:compile
+  - javax.transaction:jta:jar:1.1:compile
+  - org.hibernate.javax.persistence:hibernate-jpa-2.0-api:jar:1.0.0.Final:compile
+  - org.slf4j:slf4j-api:jar:1.5.8:compile
+  - org.hibernate:hibernate-annotations:jar:3.5.6-Final:compile
+com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.9.4:
+  - com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.9.4:compile
+com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.9.4:
+  - com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.9.4:compile
+  - com.fasterxml.jackson.core:jackson-core:jar:2.9.4:compile
+  - com.fasterxml.jackson.core:jackson-databind:jar:2.9.4:compile
+javax:javaee-api:jar:7.0:
+  - javax:javaee-api:jar:7.0:provided
+  - javax.activation:activation:jar:1.1:provided
+  - com.sun.mail:javax.mail:jar:1.5.0:provided

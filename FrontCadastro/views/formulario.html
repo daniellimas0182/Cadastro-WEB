@@ -1,0 +1,144 @@
+<div>
+    <div>
+        <div style="margin-top: 10px; margin-bottom: 20px;">
+            <h3 style="text-align: center">{{tituloApp}}</h3>
+        </div>
+        <form class="form-inline">
+            <div class="form-row align-items-center">
+                <button ng-click="formulario =null" type="button" class="btn btn-info my-8 my-sm-2" data-toggle="modal"
+                    data-target="#formularioModal">
+                    Nova formulario
+                </button>
+            </div>
+        </form>
+        <!--------minha pesquisa-->
+        <input type="text" ng-model="criterioDeBusca" placeholder="O que você deseja buscar?" class="form-control">
+
+        <div class="alert-danger">{{mensagemDeErro}}</div>
+        <table class="table table-hover">
+            <thead>
+                <th>Cód.</th>
+                <th><a href="" ng-click="ordenarPor('descricao')">Descricao</a> </th>
+                <th><a href="" ng-click="ordenarPor('dataInicial')">Data inicial</a></th>
+                <th><a href="" ng-click="ordenarPor('dataFinal')">Data final</a></th>
+                <th></th>
+                <th>Ações</th>
+            </thead>
+            <tbody>
+
+                <!--
+     
+                -->
+                <tr ng-repeat="chamarFormulario in formularios | filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao"
+                    ng-class="{'cor-linha negrito': chamarFormulario.selecionado}">
+                    <td style="width: 5%">{{chamarFormulario.idFormulario}}</td>
+                    <td title="{{chamarFormulario.descricao | name}}">{{chamarFormulario.descricao}}</td>
+                    <td>{{chamarFormulario.dataInicial | date:'dd/MM/yyyy'}}</td>
+                    <td>{{chamarFormulario.dataFinal | date:'dd/MM/yyyy'}}</td>
+                    <td>
+                        <a href="" ng-click="gerarLinkFormulario(chamarFormulario)"><span style="padding: 3px;"
+                                title="Gerar Link para respostas dos funcionarios" data-toggle="modal"
+                                data-target="#formularioModalLink">Gerar Link</span></a>
+                    </td>
+                    <td>
+
+                        <a href="" ng-click="editarFormulario(chamarFormulario)"><span style="padding: 3px;"
+                                title="Editar formulario" class="fa fa-pencil" data-toggle="modal"
+                                data-target="#formularioModal"></span></a>
+
+                        <a href="" ng-click="removerFormulario(chamarFormulario)"><span style="padding: 3px;"
+                                title="Remover formulario" class="fa fa-trash"></span></a>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h5 style="text-align: center" ng-show="!formularios.length">Não existem formulario a serem demonstrados. Clique
+            em
+            'Novo formulario' para adicionar!</h5>
+        <!----------------aqui vai o botao -->
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="formularioModal" tabindex="-1" role="dialog" aria-labelledby="formularioModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="formularioModalLabel">{{!formulario.idFormulario ? 'Adicionando formulario' :
+                            'Editar
+                            formulario'}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formularioForm" name="formularioForm">
+                            <textarea ng-model="formulario.descricao" ng-maxlength="1000" ng-minlength="5"
+                                class="form-control" type="text" name="descricao" id="descricao"
+                                placeholder="Descrição"></textarea>
+
+
+                            <input ng-model="formulario.dataInicial" class="form-control" type="date" name="dataInicial"
+                                id="dataInicial">
+
+                            <input ng-model="formulario.dataFinal" class="form-control" type="date" name="dataFinal"
+                                id="dataFinal">
+
+                        </form>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                            <button type="button" class="btn btn-primary" ng-click="adicionarFormulario(formulario)"
+                                data-dismiss="modal">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="formularioModalLink" tabindex="-1" role="dialog"
+            aria-labelledby="formularioModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="formularioModalLabel">Link Gerado</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formularioLinkForm" name="formularioLinkForm">
+                            <h5>Copie o link e envie para aos funcionários:</h5>
+                            <br>
+                            <textarea ng-model="link" ng-maxlength="1000" ng-minlength="5" class="form-control"
+                                type="text" name="link" id="myInput" placeholder="Link"></textarea>
+
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"  onclick="myFunction()">Copiar Link</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function myFunction() {
+                /* Get the text field */
+                var copyText = document.getElementById("myInput");
+
+                /* Select the text field */
+                copyText.select();
+
+                /* Copy the text inside the text field */
+                document.execCommand("copy");
+
+                /* Alert the copied text */
+                alert("Link copiado para o clipboard!");
+            }
+        </script>
